@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   createBottomTabNavigator,
@@ -22,12 +22,14 @@ import ScanResultsScreen from './screens/ScanResultsScreen';
 import NextStepsScreen from './screens/NextStepsScreen';
 import NorwoodAnalysisScreen from './screens/NorwoodAnalysisScreen';
 import RecoveryCalendarScreen from './screens/RecoveryCalendarScreen';
+import OnboardingScreen from './screens/OnboardingScreen';
 import MedicalProfileScreen from './screens/MedicalProfileScreen';
-import { colors, shadow } from './theme';
+import { colors } from './theme';
 
 export type RootStackParamList = {
   Splash: undefined;
   Welcome: undefined;
+  Onboarding: undefined;
   SignIn: undefined;
   SignUp: undefined;
   MainTabs: undefined;
@@ -54,9 +56,9 @@ type TabIcon = React.ComponentProps<typeof Ionicons>['name'];
 function CustomTabBar({ state, navigation }: BottomTabBarProps) {
   const items: { name: keyof TabParamList; icon: TabIcon; iconOn: TabIcon; label: string }[] = [
     { name: 'Home', icon: 'grid-outline', iconOn: 'grid', label: 'Home' },
-    { name: 'Scan', icon: 'scan-outline', iconOn: 'scan', label: 'Scan' },
-    { name: 'Plan', icon: 'clipboard-outline', iconOn: 'clipboard', label: 'Plan' },
-    { name: 'Track', icon: 'trending-up-outline', iconOn: 'trending-up', label: 'Track' },
+    { name: 'Scan', icon: 'scan-outline', iconOn: 'scan', label: 'Analysis' },
+    { name: 'Plan', icon: 'time-outline', iconOn: 'time', label: 'Log' },
+    { name: 'Track', icon: 'calendar-outline', iconOn: 'calendar', label: 'Calendar' },
     { name: 'Profile', icon: 'person-outline', iconOn: 'person', label: 'Profile' },
   ];
 
@@ -109,11 +111,11 @@ export default function RootNavigator() {
   return (
     <NavigationContainer
       theme={{
-        dark: false,
+        dark: true,
         colors: {
           primary: colors.primary,
           background: colors.bg,
-          card: colors.card,
+          card: colors.bg,
           text: colors.text,
           border: colors.border,
           notification: colors.warning,
@@ -129,15 +131,13 @@ export default function RootNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="MainTabs" component={MainTabs} />
         <Stack.Screen name="Camera" component={CameraScreen} options={{ presentation: 'fullScreenModal' }} />
         <Stack.Screen name="Journey" component={JourneyScreen} />
-        <Stack.Screen
-          name="NorwoodAnalysis"
-          component={NorwoodAnalysisScreen}
-        />
+        <Stack.Screen name="NorwoodAnalysis" component={NorwoodAnalysisScreen} />
         <Stack.Screen name="RecoveryCalendar" component={RecoveryCalendarScreen} />
         <Stack.Screen name="MedicalProfile" component={MedicalProfileScreen} />
       </Stack.Navigator>
@@ -146,10 +146,14 @@ export default function RootNavigator() {
 }
 
 const styles = StyleSheet.create({
-  tabSafeArea: { backgroundColor: '#fff', ...shadow.cardStrong },
+  tabSafeArea: {
+    backgroundColor: colors.bgBase,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
   tabBar: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: colors.bgBase,
     paddingTop: 10,
     paddingBottom: 6,
     paddingHorizontal: 6,
@@ -167,5 +171,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   tabLabel: { fontSize: 11, color: colors.textMuted, fontWeight: '500' },
-  tabLabelOn: { color: colors.primary, fontWeight: '700' },
+  tabLabelOn: { color: colors.textStrong, fontWeight: '700' },
 });

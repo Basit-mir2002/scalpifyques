@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from './src/navigation';
 import { colors } from './src/theme';
+import { GlobalBackground } from './src/components/GlobalBackground';
 import { hydrateUser } from './src/userStore';
 import { hydrateMeds } from './src/medsStore';
 import { hydrateScans } from './src/scanStore';
@@ -18,13 +19,15 @@ export default function App() {
   }, []);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.bg }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.bgBase }}>
       <SafeAreaProvider>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
+        {/* Global radial-glow background sits behind every screen */}
+        <GlobalBackground />
         {ready ? (
           <RootNavigator />
         ) : (
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.bg }}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <ActivityIndicator color={colors.primary} />
           </View>
         )}

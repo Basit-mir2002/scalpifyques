@@ -32,7 +32,7 @@ const TIME_RE = /^([01]?\d|2[0-3]):([0-5]\d)$/;
 const ICON_PALETTE: { icon: Med['icon']; color: string; bg: string }[] = [
   { icon: 'medical', color: colors.primary, bg: colors.primarySoft },
   { icon: 'flask', color: colors.successText, bg: colors.successSoft },
-  { icon: 'water', color: colors.primary, bg: '#DCE9F8' },
+  { icon: 'water', color: colors.primary, bg: colors.primarySoft },
   { icon: 'leaf', color: colors.successText, bg: colors.successSoft },
 ];
 
@@ -309,10 +309,12 @@ const styles = StyleSheet.create({
   medCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     borderRadius: 18,
     padding: spacing.lg,
     gap: 14,
+    borderWidth: 1,
+    borderColor: colors.border,
     ...shadow.card,
   },
   medIcon: { width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
@@ -340,7 +342,7 @@ const styles = StyleSheet.create({
   },
 
   empty: {
-    backgroundColor: colors.card,
+    backgroundColor: colors.cardSolid,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: colors.border,
@@ -382,7 +384,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalCard: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: spacing.xl,

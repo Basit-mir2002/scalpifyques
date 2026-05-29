@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     borderRadius: 14,
-    backgroundColor: colors.card,
+    backgroundColor: colors.cardSolid,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: colors.border,
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
     left: 8,
-    backgroundColor: 'rgba(14,27,44,0.8)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 6,
@@ -253,7 +253,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 5,
-    ...shadow.card,
+    shadowColor: colors.primary,
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 6,
   },
   cardTitle: { color: colors.textStrong, fontSize: 22, fontWeight: '800', lineHeight: 26 },
   sliderTrack: {
@@ -298,7 +302,7 @@ const styles = StyleSheet.create({
   kvValue: { color: colors.text, fontSize: 15, fontWeight: '700' },
 
   paramCard: {
-    backgroundColor: colors.cardElev,
+    backgroundColor: colors.cardSolid,
     borderRadius: 18,
     padding: spacing.lg,
   },
@@ -307,7 +311,7 @@ const styles = StyleSheet.create({
   infoCard: {
     flexDirection: 'row',
     gap: 10,
-    backgroundColor: '#DDEBFB',
+    backgroundColor: colors.primarySoft,
     padding: spacing.md,
     borderRadius: 14,
     alignItems: 'flex-start',

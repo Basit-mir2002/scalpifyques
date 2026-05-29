@@ -3,7 +3,7 @@ import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
-const logo = require('../../assets/logo.jpeg');
+const logo = require('../../assets/logo.png');
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Card, Field, GhostLink, PrimaryButton } from '../components/ui';
@@ -72,7 +72,7 @@ export default function SignInScreen() {
             <View style={styles.fieldWrap}>
               <Ionicons name="lock-closed-outline" size={18} color={colors.textDim} style={{ marginRight: 8 }} />
               <TextInput
-                style={{ flex: 1, color: colors.text, fontSize: 16 }}
+                style={{ flex: 1, color: colors.textStrong, fontSize: 16 }}
                 placeholder="••••••••"
                 placeholderTextColor={colors.textFaint}
                 secureTextEntry={!show}
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   fieldWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.card,
+    backgroundColor: colors.bgElev,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 14,

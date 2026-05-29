@@ -1,40 +1,44 @@
-// Scalpify clinical-light theme.
-// Light, calm, medical-grade. Cards float on a pale sky background.
+// Scalpify dark clinical theme.
+// Deep, premium, medical-grade dark UI with blue accents and glassmorphic cards.
+// `bgBase` is the solid dark color rendered once at the root (App.tsx).
+// `bg` is transparent so screens inherit the root's radial-glow background.
 export const colors = {
   // Surfaces
-  bg: '#EEF4FB',
-  bgElev: '#F6FAFE',
-  card: '#FFFFFF',
-  cardElev: '#F1F6FC',
-  cardSubtle: '#F4F8FD',
-  border: '#E5ECF4',
-  borderSoft: '#EDF2F8',
+  bgBase: '#0A0C12',
+  bg: 'transparent',
+  bgElev: '#111820',
+  card: 'rgba(255,255,255,0.04)',
+  cardElev: 'rgba(255,255,255,0.07)',
+  cardSubtle: 'rgba(255,255,255,0.03)',
+  cardSolid: '#161B22',
+  border: 'rgba(255,255,255,0.08)',
+  borderSoft: 'rgba(255,255,255,0.05)',
 
   // Brand
-  primary: '#0E5AC8',
-  primaryDeep: '#0848A4',
-  primaryDim: '#5D8FE0',
-  primarySoft: '#E3EEFB',
-  primaryGlow: 'rgba(14,90,200,0.16)',
+  primary: '#0A84FF',
+  primaryDeep: '#0066CC',
+  primaryDim: '#4DA3FF',
+  primarySoft: 'rgba(10,132,255,0.15)',
+  primaryGlow: 'rgba(10,132,255,0.20)',
 
   // Status / accents
-  success: '#16A34A',
-  successSoft: '#D7F3DE',
-  successText: '#0F7A37',
+  success: '#30D158',
+  successSoft: 'rgba(48,209,88,0.15)',
+  successText: '#30D158',
 
-  warning: '#E07A1F',
-  warningSoft: '#FCE5C9',
+  warning: '#FF9F0A',
+  warningSoft: 'rgba(255,159,10,0.15)',
 
-  danger: '#DC2626',
-  dangerSoft: '#FDE2E2',
-  dangerText: '#B02323',
+  danger: '#FF453A',
+  dangerSoft: 'rgba(255,69,58,0.15)',
+  dangerText: '#FF453A',
 
   // Text
-  text: '#0E1B2C',
-  textStrong: '#06101C',
-  textMuted: '#5D6B7C',
-  textDim: '#94A3B8',
-  textFaint: '#B7C2CE',
+  text: 'rgba(255,255,255,0.87)',
+  textStrong: '#FFFFFF',
+  textMuted: 'rgba(255,255,255,0.50)',
+  textDim: 'rgba(255,255,255,0.30)',
+  textFaint: 'rgba(255,255,255,0.20)',
   onPrimary: '#FFFFFF',
 };
 
@@ -72,20 +76,19 @@ export const typography = {
   },
 };
 
-// Soft elevation profile for white cards on the pale-blue background.
 export const shadow = {
   card: {
-    shadowColor: '#0E1B2C',
-    shadowOpacity: 0.06,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 4 },
-    elevation: 2,
+    elevation: 4,
   },
   cardStrong: {
-    shadowColor: '#0E1B2C',
-    shadowOpacity: 0.10,
+    shadowColor: '#000',
+    shadowOpacity: 0.5,
     shadowRadius: 22,
     shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
+    elevation: 8,
   },
 };

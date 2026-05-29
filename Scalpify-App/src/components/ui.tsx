@@ -55,7 +55,7 @@ export function Pill({
     default: { bg: colors.cardElev, fg: colors.textMuted },
     primary: { bg: colors.primarySoft, fg: colors.primary },
     success: { bg: colors.successSoft, fg: colors.successText },
-    warning: { bg: colors.warningSoft, fg: '#9A4A04' },
+    warning: { bg: colors.warningSoft, fg: colors.warning },
     danger: { bg: colors.dangerSoft, fg: colors.dangerText },
     soft: { bg: colors.cardElev, fg: colors.text },
   };
@@ -85,25 +85,27 @@ export function PrimaryButton({
   variant?: 'primary' | 'success';
   iconRight?: React.ComponentProps<typeof Ionicons>['name'];
 }) {
-  const bg = variant === 'success' ? colors.success : colors.primary;
+  const isSuccess = variant === 'success';
   return (
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
       style={({ pressed }) => [
         styles.primaryBtn,
-        { backgroundColor: bg },
+        isSuccess
+          ? { backgroundColor: colors.success }
+          : { backgroundColor: '#F5F5F0' },
         disabled && { opacity: 0.5 },
         pressed && { transform: [{ scale: 0.98 }] },
         style,
       ]}
     >
       {loading ? (
-        <ActivityIndicator color="#fff" />
+        <ActivityIndicator color={isSuccess ? '#fff' : '#0B0F14'} />
       ) : (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Text style={styles.primaryBtnText}>{label}</Text>
-          {iconRight && <Ionicons name={iconRight} size={18} color="#fff" />}
+          <Text style={[styles.primaryBtnText, !isSuccess && { color: '#0B0F14' }]}>{label}</Text>
+          {iconRight && <Ionicons name={iconRight} size={18} color={isSuccess ? '#fff' : '#0B0F14'} />}
         </View>
       )}
     </Pressable>
@@ -189,7 +191,7 @@ export function Field({
 export function CircleIconButton({
   icon,
   onPress,
-  bg = colors.card,
+  bg = colors.cardSolid,
   size = 40,
   color = colors.text,
   border,
@@ -227,7 +229,6 @@ export function CircleIconButton({
   );
 }
 
-// Small horizontal segmented control: [tab1 | tab2]
 export function Segmented<T extends string>({
   options,
   value,
@@ -259,8 +260,6 @@ export function Segmented<T extends string>({
   );
 }
 
-// Thin progress bar shown at the very top of certain screens (matches mockup
-// blue/green sliver above the app header).
 export function ScreenProgress({ pct = 30 }: { pct?: number }) {
   return (
     <View style={styles.progressBar}>
@@ -271,9 +270,11 @@ export function ScreenProgress({ pct = 30 }: { pct?: number }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.card,
+    backgroundColor: colors.cardSolid,
     borderRadius: 20,
     padding: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   pill: {
     flexDirection: 'row',
@@ -289,7 +290,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    ...shadow.card,
   },
   primaryBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
   secondaryBtn: {
@@ -300,6 +300,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primarySoft,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   secondaryBtnText: { color: colors.primary, fontSize: 15, fontWeight: '700' },
   ghostLink: { fontSize: 14, fontWeight: '600' },
@@ -311,7 +313,7 @@ const styles = StyleSheet.create({
   fieldWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.card,
+    backgroundColor: colors.cardSolid,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 14,
@@ -319,16 +321,18 @@ const styles = StyleSheet.create({
   },
   fieldInput: {
     flex: 1,
-    color: colors.text,
+    color: colors.textStrong,
     fontSize: 16,
     paddingVertical: 14,
   },
   segmented: {
     flexDirection: 'row',
-    backgroundColor: colors.cardElev,
+    backgroundColor: colors.cardSolid,
     borderRadius: 999,
     padding: 4,
     alignSelf: 'flex-start',
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   segmentedItem: {
     paddingHorizontal: 14,
@@ -347,6 +351,6 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
-    backgroundColor: colors.success,
+    backgroundColor: colors.primary,
   },
 });

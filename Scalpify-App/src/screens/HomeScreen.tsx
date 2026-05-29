@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
   dateText: { color: colors.textMuted, fontSize: 12, fontWeight: '600' },
   scanRow: { flexDirection: 'row', alignItems: 'center', gap: 14, marginTop: spacing.md },
   scanThumb: { width: 64, height: 64, borderRadius: 12, backgroundColor: colors.cardElev },
-  scanThumbEmpty: { alignItems: 'center', justifyContent: 'center' },
+  scanThumbEmpty: { alignItems: 'center', justifyContent: 'center', backgroundColor: colors.card },
   smallLabel: { color: colors.textMuted, fontSize: 13 },
   norwoodValue: { color: colors.primary, fontSize: 22, fontWeight: '800', marginTop: 2 },
   norwoodSub: { color: colors.text, fontSize: 16, fontWeight: '700' },
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
 
   // Action Needed card
   actionCard: {
-    backgroundColor: '#FDEAEA',
+    backgroundColor: colors.dangerSoft,
     borderRadius: 18,
     padding: spacing.lg,
   },
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     borderRadius: 14,
     padding: spacing.md,
     marginTop: spacing.md,
@@ -410,19 +410,19 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: 'rgba(255,255,255,0.92)',
+    backgroundColor: colors.cardSolid,
     alignItems: 'center',
     justifyContent: 'center',
   },
   journeyBottom: { flexDirection: 'row', justifyContent: 'space-between', marginTop: spacing.md },
   journeyMeta: { color: colors.textMuted, fontSize: 13 },
   journeyPct: { color: colors.success, fontSize: 13, fontWeight: '700' },
-  journeyBar: { height: 6, backgroundColor: colors.cardElev, borderRadius: 3, marginTop: 6, overflow: 'hidden' },
+  journeyBar: { height: 6, backgroundColor: colors.card, borderRadius: 3, marginTop: 6, overflow: 'hidden' },
   journeyFill: { height: '100%', backgroundColor: colors.success },
 
   // Personalized Next Steps
   nextCard: {
-    backgroundColor: '#DDEBFB',
+    backgroundColor: colors.primarySoft,
     borderRadius: 18,
     padding: spacing.lg,
     gap: spacing.md,
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
   riskBox: {
     flexDirection: 'row',
     gap: 10,
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     padding: spacing.md,
     borderRadius: 12,
   },

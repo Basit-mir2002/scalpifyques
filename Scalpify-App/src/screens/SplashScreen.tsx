@@ -1,73 +1,77 @@
-import React, { useEffect } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, Image, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { colors, spacing } from '../theme';
+import { colors } from '../theme';
 import type { RootStackParamList } from '../navigation';
 import { useUser } from '../userStore';
 
-const logo = require('../../assets/logo.jpeg');
+const logo = require('../../assets/logo.png');
 
 export default function SplashScreen() {
   const nav = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const user = useUser();
 
+  const fade = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(0.9)).current;
+  const barW = useRef(new Animated.Value(0)).current;
+
   useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fade, { toValue: 1, duration: 800, useNativeDriver: true }),
+      Animated.spring(scale, { toValue: 1, friction: 8, tension: 50, useNativeDriver: true }),
+    ]).start();
+
+    Animated.timing(barW, {
+      toValue: 1, duration: 2000, delay: 400,
+      easing: Easing.inOut(Easing.ease), useNativeDriver: false,
+    }).start();
+
     const t = setTimeout(() => {
-      nav.reset({
-        index: 0,
-        routes: [{ name: user ? 'MainTabs' : 'Welcome' }],
-      });
-    }, 1200);
+      nav.reset({ index: 0, routes: [{ name: user ? 'MainTabs' : 'Welcome' }] });
+    }, 2600);
     return () => clearTimeout(t);
   }, [user, nav]);
 
   return (
-    <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
+    <View style={styles.root}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.bgBase} />
+
       <View style={styles.center}>
-        <Image source={logo} style={styles.logo} resizeMode="contain" />
-        <Text style={styles.tagline}>AI HAIR-LOSS ASSESSMENT & RECOVERY</Text>
-        <View style={styles.rule} />
+        <Animated.Image
+          source={logo}
+          style={[styles.logo, { opacity: fade, transform: [{ scale }] }]}
+          resizeMode="contain"
+        />
       </View>
 
-      <View style={styles.footer}>
-        <Ionicons name="phone-portrait-outline" size={14} color={colors.textMuted} />
-        <Text style={styles.footerText}>Local-only · No data leaves your device</Text>
+      <View style={styles.bottom}>
+        <View style={styles.barTrack}>
+          <Animated.View
+            style={[
+              styles.barFill,
+              { width: barW.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }) },
+            ]}
+          />
+        </View>
+        <Text style={styles.footer}>AI-Powered Hair Loss Assessment</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.bg },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: spacing.xxl },
-  logo: {
-    width: 260,
-    height: 240,
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  logo: { width: 220, height: 220 },
+  bottom: { paddingHorizontal: 50, paddingBottom: 40 },
+  barTrack: {
+    height: 3, backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 2, overflow: 'hidden', marginBottom: 14,
   },
-  tagline: {
-    color: colors.textMuted,
-    fontSize: 12,
-    fontWeight: '600',
-    letterSpacing: 2,
-    marginTop: 8,
-    textAlign: 'center',
-  },
-  rule: {
-    height: 3,
-    width: 120,
-    backgroundColor: colors.primary,
-    borderRadius: 2,
-    marginTop: 24,
-  },
+  barFill: { height: '100%', backgroundColor: colors.primary, borderRadius: 2 },
   footer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    paddingBottom: spacing.xl,
-    alignSelf: 'center',
+    color: 'rgba(255,255,255,0.25)', fontSize: 11, fontWeight: '600',
+    textAlign: 'center', letterSpacing: 0.5,
   },
-  footerText: { color: colors.textMuted, fontSize: 13, fontWeight: '600' },
 });

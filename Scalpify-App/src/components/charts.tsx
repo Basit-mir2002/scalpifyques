@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 import Svg, { Circle, Defs, LinearGradient, Path, Polyline, Stop } from 'react-native-svg';
 import { colors } from '../theme';
 
-// Circular progress ring rendered with SVG. `pct` is 0-100.
 export function ProgressRing({
   pct,
   size = 130,
@@ -45,7 +44,6 @@ export function ProgressRing({
           strokeDasharray={`${circumference} ${circumference}`}
           strokeDashoffset={dash}
           strokeLinecap="round"
-          // start at 12 o'clock
           transform={`rotate(-90, ${size / 2}, ${size / 2})`}
         />
       </Svg>
@@ -54,7 +52,6 @@ export function ProgressRing({
   );
 }
 
-// Filled smooth line chart with grid baseline + data dots.
 export function SparkLine({
   data,
   height = 120,
@@ -92,7 +89,6 @@ export function SparkLine({
   });
 
   const polyPoints = points.map(p => `${p.x},${p.y}`).join(' ');
-  // Fill path: start at first point, line through all, then down to baseline and back
   const fillPath = `M${points[0].x},${points[0].y} ${points.map(p => `L${p.x},${p.y}`).join(' ')} L${points[points.length - 1].x},${height} L${points[0].x},${height} Z`;
 
   return (
@@ -101,7 +97,7 @@ export function SparkLine({
         {gradient && (
           <Defs>
             <LinearGradient id="gradFill" x1="0" y1="0" x2="0" y2="1">
-              <Stop offset="0" stopColor={color} stopOpacity="0.22" />
+              <Stop offset="0" stopColor={color} stopOpacity="0.30" />
               <Stop offset="1" stopColor={color} stopOpacity="0" />
             </LinearGradient>
           </Defs>
@@ -121,7 +117,7 @@ export function SparkLine({
             cx={p.x}
             cy={p.y}
             r={i === points.length - 1 ? 4 : 2.5}
-            fill={i === points.length - 1 ? color : '#fff'}
+            fill={i === points.length - 1 ? color : colors.bgBase}
             stroke={color}
             strokeWidth={i === points.length - 1 ? 0 : 1.5}
           />
@@ -131,7 +127,6 @@ export function SparkLine({
   );
 }
 
-// Vertical bar chart for Norwood progression (active bar gets primary color).
 export function NorwoodBars({
   active,
   height = 64,
@@ -139,7 +134,6 @@ export function NorwoodBars({
   active: string;
   height?: number;
 }) {
-  // Heights tuned to convey progression: I (smallest) → VII (tallest).
   const heights = [0.30, 0.40, 0.55, 0.70, 0.80, 0.92, 1.0];
   const labels = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
   const activeIdx = labels.findIndex(l => l.toUpperCase() === active.toUpperCase());
@@ -155,7 +149,7 @@ export function NorwoodBars({
                 height: height * heights[i],
                 width: '100%',
                 borderRadius: 3,
-                backgroundColor: on ? colors.primary : '#C8D7E8',
+                backgroundColor: on ? colors.primary : 'rgba(255,255,255,0.10)',
               }}
             />
             <Text

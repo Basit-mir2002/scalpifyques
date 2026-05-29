@@ -169,10 +169,10 @@ export default function RecoveryCalendarScreen() {
               <Text style={styles.calTitle}>{MONTH_NAMES[viewMonth.m]} {viewMonth.y}</Text>
               <View style={{ flexDirection: 'row', gap: 8 }}>
                 <Pressable onPress={() => shiftMonth(-1)} hitSlop={8}>
-                  <Ionicons name="chevron-back" size={20} color={colors.text} />
+                  <Ionicons name="chevron-back" size={20} color={colors.textStrong} />
                 </Pressable>
                 <Pressable onPress={() => shiftMonth(1)} hitSlop={8}>
-                  <Ionicons name="chevron-forward" size={20} color={colors.text} />
+                  <Ionicons name="chevron-forward" size={20} color={colors.textStrong} />
                 </Pressable>
               </View>
             </View>
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.bg },
 
   phaseCard: {
-    backgroundColor: '#DDEBFB',
+    backgroundColor: colors.primarySoft,
     borderRadius: 18,
     padding: spacing.lg,
   },
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
   phaseLabel: { color: colors.primary, fontSize: 11, fontWeight: '800', letterSpacing: 1.5 },
   phaseName: { color: colors.textStrong, fontSize: 22, fontWeight: '800', marginTop: 4 },
   phaseBody: { color: colors.text, fontSize: 13, lineHeight: 19, marginTop: 8 },
-  phaseBar: { height: 6, backgroundColor: '#B0CBE9', borderRadius: 3, marginTop: spacing.md, overflow: 'hidden' },
+  phaseBar: { height: 6, backgroundColor: colors.cardElev, borderRadius: 3, marginTop: spacing.md, overflow: 'hidden' },
   phaseFill: { height: '100%', backgroundColor: colors.primary },
   phaseStartEnd: { color: colors.textMuted, fontSize: 12 },
 
@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
   },
 
   nextMilestone: {
-    backgroundColor: '#D7F3DE',
+    backgroundColor: colors.successSoft,
     borderRadius: 18,
     padding: spacing.lg,
   },
@@ -368,15 +368,15 @@ const styles = StyleSheet.create({
   nextMilestoneBody: { color: colors.text, fontSize: 13, lineHeight: 19, marginTop: 6 },
 
   darkCard: {
-    backgroundColor: '#0E1B2C',
+    backgroundColor: colors.cardSolid,
     borderRadius: 18,
     padding: spacing.lg,
   },
   darkLabel: { color: colors.textDim, fontSize: 11, fontWeight: '700', letterSpacing: 1.5 },
-  darkTitle: { color: '#fff', fontSize: 20, fontWeight: '800', marginTop: 6 },
-  darkBody: { color: '#cbd5e1', fontSize: 13, lineHeight: 19, marginTop: 6 },
+  darkTitle: { color: colors.textStrong, fontSize: 20, fontWeight: '800', marginTop: 6 },
+  darkBody: { color: colors.textMuted, fontSize: 13, lineHeight: 19, marginTop: 6 },
 
-  tipCard: { backgroundColor: colors.cardElev, borderRadius: 18, padding: spacing.lg, gap: 4 },
+  tipCard: { backgroundColor: colors.cardSolid, borderRadius: 18, padding: spacing.lg, gap: 4 },
   tipLabel: { color: colors.text, fontSize: 15, fontWeight: '700' },
   tipBody: { color: colors.textMuted, fontSize: 13, fontStyle: 'italic', lineHeight: 19, marginTop: 6 },
   tipLink: { color: colors.primary, fontWeight: '700', fontSize: 13 },

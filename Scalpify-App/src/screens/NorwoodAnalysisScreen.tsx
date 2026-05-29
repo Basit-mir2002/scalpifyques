@@ -71,10 +71,10 @@ export default function NorwoodAnalysisScreen() {
       <AppHeader showBack />
       <ScrollView contentContainerStyle={{ paddingBottom: spacing.xxl }}>
         <PageTitle
-          title="Progression Trends"
+          title="Progression Tracking"
           subtitle={
             delta !== null
-              ? `Your hair density has ${delta >= 0 ? 'improved' : 'decreased'} by ${Math.abs(delta).toFixed(1)}% in the last ${monthCount} months.`
+              ? `Monitor your scalp health over time.`
               : `Take a few scans to start seeing density trends over time.`
           }
         />
@@ -218,7 +218,7 @@ export default function NorwoodAnalysisScreen() {
                 size={100}
                 stroke={9}
                 color={colors.primary}
-                trackColor="#FFFFFF"
+                trackColor={colors.cardElev}
               >
                 <Text style={styles.insightRingText}>
                   {delta !== null ? `${delta >= 0 ? '+' : ''}${delta.toFixed(0)}%` : '—'}
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   axisLabel: { color: colors.textMuted, fontSize: 12, flex: 1, textAlign: 'center' },
 
   scanActivity: {
-    backgroundColor: '#D9EFDA',
+    backgroundColor: colors.successSoft,
     borderRadius: 18,
     padding: spacing.lg,
   },
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   dayCell: { width: `${100 / 7}%`, aspectRatio: 1, alignItems: 'center', justifyContent: 'center' },
   dayBubble: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   dayText: { color: colors.text, fontSize: 13 },
-  legendRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: spacing.md, paddingTop: 8, borderTopWidth: 1, borderColor: 'rgba(15,122,55,0.2)' },
+  legendRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: spacing.md, paddingTop: 8, borderTopWidth: 1, borderColor: colors.borderSoft },
 
   tableHead: { flexDirection: 'row', paddingBottom: 8, borderBottomWidth: 1, borderColor: colors.borderSoft },
   tableHeadText: { color: colors.textMuted, fontSize: 12, fontWeight: '600', flex: 1 },
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
   cellCov: { color: colors.text, fontSize: 14, fontWeight: '600', flex: 1, textAlign: 'right' },
 
   insightCard: {
-    backgroundColor: '#DDEBFB',
+    backgroundColor: colors.primarySoft,
     borderRadius: 18,
     padding: spacing.lg,
     gap: 8,

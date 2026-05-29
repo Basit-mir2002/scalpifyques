@@ -4,21 +4,21 @@
     "slug": "scalpify",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.jpeg",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/logo.jpeg",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#EEF4FB"
+      "backgroundColor": "#0B0F14"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.jpeg",
-        "backgroundColor": "#EEF4FB"
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#0B0F14"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false

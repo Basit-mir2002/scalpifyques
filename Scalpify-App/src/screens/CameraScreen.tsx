@@ -92,7 +92,7 @@ export default function CameraScreen() {
     setFlash(f => (f === 'off' ? 'on' : 'off'));
   }
 
-  if (!permission) return <View style={{ flex: 1, backgroundColor: '#0E1B2C' }} />;
+  if (!permission) return <View style={{ flex: 1, backgroundColor: colors.bgBase }} />;
   if (!permission.granted) {
     return (
       <SafeAreaView style={[styles.root, { padding: spacing.xl, justifyContent: 'center' }]}>
@@ -389,20 +389,23 @@ function PreScanModal({
 }
 
 const modalStyles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'flex-end' },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: spacing.xl,
     gap: 10,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderBottomWidth: 0,
   },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   title: { color: colors.textStrong, fontSize: 20, fontWeight: '800' },
   sub: { color: colors.textMuted, fontSize: 13 },
   label: { color: colors.text, fontSize: 13, fontWeight: '600', marginTop: spacing.sm },
   chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: { paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.card },
+  chip: { paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.bgElev },
   chipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
   chipText: { color: colors.text, fontSize: 13, fontWeight: '600' },
   chipTextOn: { color: '#fff' },
@@ -419,7 +422,7 @@ const modalStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#0E1B2C' },
+  root: { flex: 1, backgroundColor: colors.bg },
   darkOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.45)' },
 
   topBar: {
@@ -428,7 +431,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.md,
-    backgroundColor: '#EDF2F6',
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
   backBtn: {
     width: 40,
@@ -442,16 +445,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     alignItems: 'center',
     justifyContent: 'center',
-    ...shadow.card,
   },
-  topTitle: { color: colors.primary, fontSize: 22, fontWeight: '800' },
+  topTitle: { color: colors.textStrong, fontSize: 22, fontWeight: '800', letterSpacing: 1.5 },
 
   headPill: {
     alignSelf: 'center',
-    backgroundColor: '#0E1B2C',
+    backgroundColor: colors.cardSolid,
     paddingHorizontal: 18,
     paddingVertical: 10,
     borderRadius: 999,
@@ -535,19 +537,20 @@ const styles = StyleSheet.create({
   hintCard: {
     flexDirection: 'row',
     gap: 10,
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     paddingHorizontal: spacing.lg,
     paddingVertical: 14,
     borderRadius: 14,
     marginHorizontal: spacing.xl,
     marginBottom: spacing.md,
     alignItems: 'center',
-    ...shadow.cardStrong,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   hintText: { color: colors.text, fontSize: 13, flex: 1 },
 
   bottomBar: {
-    backgroundColor: '#0E1B2C',
+    backgroundColor: colors.bgBase,
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.lg,
   },
@@ -593,10 +596,12 @@ const styles = StyleSheet.create({
   busyText: { color: '#fff', fontSize: 14, fontWeight: '600' },
 
   errorBox: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     borderRadius: 16,
     padding: spacing.lg,
     gap: 8,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   errorTitle: { color: colors.danger, fontSize: 13, fontWeight: '800', letterSpacing: 1 },
   errorBody: { color: colors.text, fontSize: 14, lineHeight: 20 },

@@ -6,7 +6,6 @@ import { CircleIconButton } from './ui';
 import { colors, shadow, spacing } from '../theme';
 import { initialsOf, useUser } from '../userStore';
 
-// App-level header: hamburger / back, Scalpify wordmark, avatar.
 export function AppHeader({
   showBack = false,
   variant = 'menu',
@@ -25,11 +24,11 @@ export function AppHeader({
   const left =
     showBack || variant === 'back' ? (
       <Pressable hitSlop={8} onPress={() => nav.goBack()} style={styles.iconBtn}>
-        <Ionicons name="chevron-back" size={24} color={colors.text} />
+        <Ionicons name="chevron-back" size={24} color={colors.textStrong} />
       </Pressable>
     ) : variant === 'menu' ? (
       <Pressable hitSlop={8} style={styles.iconBtn}>
-        <Ionicons name="menu" size={24} color={colors.text} />
+        <Ionicons name="menu" size={24} color={colors.textStrong} />
       </Pressable>
     ) : (
       <View style={{ width: 32 }} />
@@ -38,7 +37,7 @@ export function AppHeader({
   return (
     <View style={styles.row}>
       {left}
-      <Text style={styles.wordmark}>Scalpify</Text>
+      <Text style={styles.wordmark}>SCALPIFY</Text>
       <View style={{ flex: 1 }} />
       {rightSlot ?? (
         <Pressable hitSlop={8} onPress={onRightPress}>
@@ -54,7 +53,6 @@ export function AppHeader({
   );
 }
 
-// Section header used inside a scroll view (large bold title + optional subtitle).
 export function PageTitle({
   title,
   subtitle,
@@ -72,7 +70,6 @@ export function PageTitle({
   );
 }
 
-// Compact in-scroll header used on stack-pushed screens.
 export function ScreenHeader({
   title,
   subtitle,
@@ -120,10 +117,10 @@ const styles = StyleSheet.create({
   },
   iconBtn: { width: 32, height: 32, alignItems: 'center', justifyContent: 'center' },
   wordmark: {
-    color: colors.primary,
+    color: colors.textStrong,
     fontSize: 22,
     fontWeight: '800',
-    letterSpacing: -0.3,
+    letterSpacing: 1.5,
   },
   avatar: {
     width: 38,
@@ -133,8 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
-    borderColor: '#fff',
-    ...shadow.card,
+    borderColor: colors.border,
   },
   avatarText: { color: '#fff', fontSize: 13, fontWeight: '700', letterSpacing: 0.3 },
   avatarStatus: {
@@ -146,7 +142,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     borderWidth: 1.5,
-    borderColor: '#fff',
+    borderColor: colors.bgBase,
   },
 
   pageTitle: { color: colors.textStrong, fontSize: 28, fontWeight: '800' },

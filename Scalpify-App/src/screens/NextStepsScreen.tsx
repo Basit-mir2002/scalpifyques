@@ -93,10 +93,10 @@ export default function NextStepsScreen() {
       <AppHeader />
       <ScrollView contentContainerStyle={{ paddingBottom: 140 }}>
         <PageTitle
-          title="Your Plan"
+          title="Recovery Timeline"
           subtitle={
             scanDate
-              ? `Based on your clinical assessment from ${scanDate.toDateString().slice(4)}.`
+              ? 'Track your clinical milestones and anticipated physiological changes post-procedure.'
               : 'Take your first scan to see a personalised plan.'
           }
         />
@@ -133,7 +133,7 @@ export default function NextStepsScreen() {
               variant="success"
               label="Book Consultation"
               onPress={bookConsultation}
-              style={{ marginTop: spacing.md, backgroundColor: '#1F8A3A' }}
+              style={{ marginTop: spacing.md, backgroundColor: colors.success }}
             />
           </View>
 
@@ -187,7 +187,7 @@ export default function NextStepsScreen() {
 
 function RiskRing({ pct }: { pct: number }) {
   return (
-    <ProgressRing pct={pct} size={140} stroke={11}>
+    <ProgressRing pct={pct} size={140} stroke={11} trackColor={colors.cardElev}>
       <Text style={styles.ringPct}>{pct}%</Text>
       <Text style={styles.ringSub}>RISK</Text>
     </ProgressRing>
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   cardBodyTight: { color: colors.textMuted, fontSize: 14, lineHeight: 22, marginTop: 8 },
   smallTitle: { color: colors.text, fontSize: 16, fontWeight: '700' },
   recCard: {
-    backgroundColor: '#C8F0CC',
+    backgroundColor: colors.successSoft,
     borderRadius: 18,
     padding: spacing.lg,
     gap: 8,
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.card,
+    backgroundColor: colors.cardSolid,
     padding: spacing.md,
     borderRadius: 16,
     gap: 12,
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   rowSub: { color: colors.textMuted, fontSize: 12, marginTop: 2 },
   legendRow: { flexDirection: 'row', gap: 16, marginTop: spacing.md },
   darkImage: {
-    backgroundColor: '#10222F',
+    backgroundColor: colors.cardSolid,
     borderRadius: 14,
     height: 160,
     alignItems: 'center',

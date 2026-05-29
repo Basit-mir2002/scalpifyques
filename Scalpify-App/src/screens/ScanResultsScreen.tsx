@@ -126,11 +126,11 @@ export default function ScanResultsScreen() {
             <View style={styles.photoWrap}>
               <Image source={{ uri: scan.photoUri }} style={styles.photo} resizeMode="cover" />
               <View style={styles.overlayPillsCol}>
-                <View style={[styles.overlayPill, { backgroundColor: 'rgba(255,255,255,0.85)' }]}>
+                <View style={[styles.overlayPill, { backgroundColor: 'rgba(0,0,0,0.6)' }]}>
                   <View style={[styles.overlayDot, { backgroundColor: colors.success }]} />
                   <Text style={styles.overlayPillText}>Growth Area</Text>
                 </View>
-                <View style={[styles.overlayPill, { backgroundColor: 'rgba(255,255,255,0.85)' }]}>
+                <View style={[styles.overlayPill, { backgroundColor: 'rgba(0,0,0,0.6)' }]}>
                   <View style={[styles.overlayDot, { backgroundColor: colors.danger }]} />
                   <Text style={styles.overlayPillText}>Thinning</Text>
                 </View>
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   overlayPillsCol: { position: 'absolute', top: 10, left: 10, gap: 8 },
   overlayPill: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 999 },
   overlayDot: { width: 8, height: 8, borderRadius: 4 },
-  overlayPillText: { color: colors.text, fontSize: 12, fontWeight: '600' },
+  overlayPillText: { color: colors.textStrong, fontSize: 12, fontWeight: '600' },
 
   confidenceRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: spacing.md },
   confidenceIcon: {
@@ -299,19 +299,19 @@ const styles = StyleSheet.create({
   areaValue: { color: colors.textStrong, fontSize: 24, fontWeight: '800', marginTop: 4 },
 
   clinNoteCard: {
-    backgroundColor: '#D5EBD8',
+    backgroundColor: colors.successSoft,
     borderRadius: 16,
     padding: spacing.lg,
     gap: 8,
   },
   clinNoteTitle: { color: colors.successText, fontSize: 14, fontWeight: '700' },
-  clinNoteBody: { color: colors.text, fontSize: 13, lineHeight: 19 },
+  clinNoteBody: { color: colors.textMuted, fontSize: 13, lineHeight: 19 },
 
   sectionTitle: { color: colors.textStrong, fontSize: 18, fontWeight: '700' },
   viewAll: { color: colors.primary, fontSize: 13, fontWeight: '700' },
   histCard: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.cardSolid,
     borderRadius: 14,
     padding: 8,
     gap: 6,
