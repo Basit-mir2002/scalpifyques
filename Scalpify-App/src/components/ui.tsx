@@ -94,18 +94,18 @@ export function PrimaryButton({
         styles.primaryBtn,
         isSuccess
           ? { backgroundColor: colors.success }
-          : { backgroundColor: '#F5F5F0' },
+          : { backgroundColor: colors.primary },
         disabled && { opacity: 0.5 },
         pressed && { transform: [{ scale: 0.98 }] },
         style,
       ]}
     >
       {loading ? (
-        <ActivityIndicator color={isSuccess ? '#fff' : '#0B0F14'} />
+        <ActivityIndicator color="#fff" />
       ) : (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Text style={[styles.primaryBtnText, !isSuccess && { color: '#0B0F14' }]}>{label}</Text>
-          {iconRight && <Ionicons name={iconRight} size={18} color={isSuccess ? '#fff' : '#0B0F14'} />}
+          <Text style={styles.primaryBtnText}>{label}</Text>
+          {iconRight && <Ionicons name={iconRight} size={18} color="#fff" />}
         </View>
       )}
     </Pressable>
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.cardSolid,
     borderRadius: 20,
-    padding: spacing.lg,
+    padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
   },
@@ -286,12 +286,14 @@ const styles = StyleSheet.create({
   },
   pillText: { fontSize: 12.5, fontWeight: '700', letterSpacing: 0.1 },
   primaryBtn: {
-    paddingVertical: 16,
-    borderRadius: 14,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
+    minWidth: 96,
   },
-  primaryBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  primaryBtnText: { color: '#fff', fontSize: 15, fontWeight: '700' },
   secondaryBtn: {
     flexDirection: 'row',
     paddingVertical: 14,
@@ -317,26 +319,26 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 14,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
   },
   fieldInput: {
     flex: 1,
     color: colors.textStrong,
     fontSize: 16,
-    paddingVertical: 14,
+    paddingVertical: 10,
   },
   segmented: {
     flexDirection: 'row',
     backgroundColor: colors.cardSolid,
     borderRadius: 999,
-    padding: 4,
+    padding: 2,
     alignSelf: 'flex-start',
     borderWidth: 1,
     borderColor: colors.border,
   },
   segmentedItem: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     borderRadius: 999,
   },
   segmentedItemOn: {

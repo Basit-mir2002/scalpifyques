@@ -29,6 +29,7 @@ export default function SignInScreen() {
         Alert.alert('Account not found', 'No local account matches that email. Create one first.');
         return;
       }
+      // Existing users go straight to the app home
       nav.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
     } finally {
       setSubmitting(false);

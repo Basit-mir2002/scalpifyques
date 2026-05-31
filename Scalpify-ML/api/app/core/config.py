@@ -1,7 +1,11 @@
-from pydantic_settings import BaseSettings
-from typing import Set, Optional
 from functools import lru_cache
-import os
+from pathlib import Path
+from typing import Optional, Set
+
+from pydantic_settings import BaseSettings
+
+
+API_DIR = Path(__file__).resolve().parents[2]
 
 class Settings(BaseSettings):
     # App settings
@@ -107,7 +111,7 @@ class Settings(BaseSettings):
     JWT_EXPIRATION_HOURS: int = 24
     
     class Config:
-        env_file = "../.env"  # Look for .env in parent directory
+        env_file = str(API_DIR / ".env")
         case_sensitive = True
 
 @lru_cache()

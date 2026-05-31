@@ -36,6 +36,7 @@ export default function SignUpScreen() {
     setSubmitting(true);
     try {
       await signUp({ fullName: name, email, surgeryDate: surgeryDate || null });
+      // After sign-up, go to the main app
       nav.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
     } catch (e: any) {
       Alert.alert('Sign-up failed', e?.message ?? String(e));

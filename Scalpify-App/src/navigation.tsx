@@ -23,13 +23,17 @@ import NextStepsScreen from './screens/NextStepsScreen';
 import NorwoodAnalysisScreen from './screens/NorwoodAnalysisScreen';
 import RecoveryCalendarScreen from './screens/RecoveryCalendarScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
+import OnboardingFlowScreen from './screens/OnboardingFlowScreen';
 import MedicalProfileScreen from './screens/MedicalProfileScreen';
 import { colors } from './theme';
+import OnboardingReviewScreen from './screens/OnboardingReviewScreen';
 
 export type RootStackParamList = {
   Splash: undefined;
   Welcome: undefined;
   Onboarding: undefined;
+  OnboardingFlow: undefined;
+  OnboardingReview: undefined;
   SignIn: undefined;
   SignUp: undefined;
   MainTabs: undefined;
@@ -132,6 +136,8 @@ export default function RootNavigator() {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+        <Stack.Screen name="OnboardingFlow" component={OnboardingFlowScreen} />
+        <Stack.Screen name="OnboardingReview" component={OnboardingReviewScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="MainTabs" component={MainTabs} />

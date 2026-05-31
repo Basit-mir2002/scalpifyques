@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from './src/navigation';
+import { OnboardingProvider } from './src/context/OnboardingContext';
 import { colors } from './src/theme';
 import { GlobalBackground } from './src/components/GlobalBackground';
 import { hydrateUser } from './src/userStore';
@@ -25,7 +26,9 @@ export default function App() {
         {/* Global radial-glow background sits behind every screen */}
         <GlobalBackground />
         {ready ? (
-          <RootNavigator />
+          <OnboardingProvider>
+            <RootNavigator />
+          </OnboardingProvider>
         ) : (
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <ActivityIndicator color={colors.primary} />

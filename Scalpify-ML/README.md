@@ -91,8 +91,8 @@ gasp-ai-microservices/
 
 2. **Create and activate virtual environment**
    ```bash
-   python3.12 -m venv env
-   source env/bin/activate  # On Windows: env\\Scripts\\activate
+  py -3.12 -m venv env
+  .\env\Scripts\Activate.ps1
    ```
 
 3. **Install dependencies**
@@ -115,6 +115,13 @@ gasp-ai-microservices/
    uvicorn api.app.main:app --reload --port 8000 &
    curl http://localhost:8000/api/v1/health
    ```
+
+  On Windows PowerShell, use the virtualenv Python directly:
+  ```bash
+  .\env\Scripts\python.exe app.py --version
+  .\env\Scripts\python.exe -m uvicorn api.app.main:app --reload --port 8000
+  Invoke-WebRequest http://localhost:8000/api/v1/health
+  ```
 
 ### Model Setup
 Place your trained YOLOv11 model file (`best.pt`) in the `model/` directory. The model should be trained to detect two classes:

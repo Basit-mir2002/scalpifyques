@@ -24,33 +24,40 @@ async def health_check():
     """
     
     # Check database
-    database_status = "healthy"
-    try:
-        # Simple database check
-        supabase_client.client.table("analysis_sessions").select("id").limit(1).execute()
-    except Exception as e:
-        database_status = f"error: {str(e)}"
+    if not supabase_client.enabled:
+        database_status = "disabled"
+        storage_status = "disabled"
+    else:
+        database_status = "healthy"
+        try:
+            # Simple database check
+            supabase_client.client.table("analysis_sessions").select("id").limit(1).execute()
+        except Exception as e:
+            database_status = f"error: {str(e)}"
     
-    # Check storage
-    storage_status = "healthy"
-    try:
-        # Test storage access
-        buckets = supabase_client.client.storage.list_buckets()
-        if not buckets:
-            storage_status = "warning: no buckets found"
-    except Exception as e:
-        storage_status = f"error: {str(e)}"
+        # Check storage
+        storage_status = "healthy"
+        try:
+            # Test storage access
+            buckets = supabase_client.client.storage.list_buckets()
+            if not buckets:
+                storage_status = "warning: no buckets found"
+        except Exception as e:
+            storage_status = f"error: {str(e)}"
     
     # Check model
-    model_status = "healthy"
-    try:
-        # Test model loading
-        analysis_service = AnalysisService()
-        model_info = analysis_service.get_model_info()
-        if "error" in model_info:
-            model_status = model_info["error"]
-    except Exception as e:
-        model_status = f"error: {str(e)}"
+    if not os.path.exists(settings.MODEL_PATH):
+        model_status = f"warning: model not loaded ({settings.MODEL_PATH} not found)"
+    else:
+        model_status = "healthy"
+        try:
+            # Test model loading
+            analysis_service = AnalysisService()
+            model_info = analysis_service.get_model_info()
+            if "error" in model_info:
+                model_status = f"warning: {model_info['error']}"
+        except Exception as e:
+            model_status = f"warning: {str(e)}"
     
     # Determine overall status
     # NOTE: previous version did `"error" in [list]` which checks list membership
@@ -134,6 +141,8 @@ async def liveness_probe():
 async def _check_database():
     """Quick database connectivity check"""
     try:
+        if not supabase_client.enabled:
+            return True
         result = supabase_client.client.table("analysis_sessions").select("id").limit(1).execute()
         return True
     except Exception as e:

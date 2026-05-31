@@ -6,7 +6,8 @@ React Native (Expo) front-end for the Scalpify ML FastAPI backend.
 
 ```bash
 cd Scalpify-App
-EXPO_PUBLIC_DEV_LAN_IP=<your-laptop-LAN-IP> npx expo start --lan
+$env:EXPO_PUBLIC_DEV_LAN_IP='<your-laptop-LAN-IP>'
+npx expo start --lan
 ```
 
 Press `i` for iOS simulator, `a` for Android, or scan the QR code with the Expo Go app.
@@ -19,7 +20,7 @@ Start the FastAPI server bound to `0.0.0.0` so the phone (on the same Wi-Fi) can
 
 ```bash
 cd ../Scalpify-ML/api
-../env/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+..\env\Scripts\python.exe -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
 For production, set `EXPO_PUBLIC_API_BASE_URL` to your deployed FastAPI URL in your `.env` / EAS env before building.

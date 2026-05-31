@@ -24,7 +24,7 @@ import Svg, {
 } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 import { PrimaryButton } from '../components/ui';
-import { WireframeHead } from '../components/WireframeHead';
+// WireframeHead removed — scan visual deleted
 import { colors, spacing } from '../theme';
 import type { RootStackParamList } from '../navigation';
 
@@ -39,13 +39,6 @@ type Page = {
 };
 
 const PAGES: Page[] = [
-  {
-    key: 'scan',
-    title: 'Move beyond the mirror.',
-    body: 'Stop guessing your progress. Scalpify uses YOLO-powered computer vision to provide objective baldness ratios and clinical Norwood staging with ',
-    highlight: '98% detection accuracy.',
-    render: () => <ScanVisual />,
-  },
   {
     key: 'journey',
     title: 'Visualize your recovery.',
@@ -82,15 +75,21 @@ export default function OnboardingScreen() {
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
   function goNext() {
+    if (currentIndex === 0) {
+      nav.navigate('OnboardingFlow');
+      return;
+    }
+
     if (currentIndex < PAGES.length - 1) {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
-    } else {
-      nav.navigate('SignUp');
+      return;
     }
+
+    nav.navigate('OnboardingFlow');
   }
 
   function skip() {
-    nav.navigate('SignUp');
+    nav.navigate('OnboardingFlow');
   }
 
   const isLast = currentIndex === PAGES.length - 1;
@@ -148,7 +147,7 @@ export default function OnboardingScreen() {
         </View>
 
         <PrimaryButton
-          label={isLast ? 'Get Started' : 'Next'}
+          label={currentIndex === 0 ? 'Start questionnaire' : isLast ? 'Get Started' : 'Next'}
           iconRight="arrow-forward"
           onPress={goNext}
           style={styles.nextBtn}
@@ -158,35 +157,7 @@ export default function OnboardingScreen() {
   );
 }
 
-/* ─── Visual 1: Wireframe Head with Scan ─── */
-function ScanVisual() {
-  return (
-    <View style={vs.card}>
-      <View style={vs.cardHeader}>
-        <View style={vs.cardDot} />
-        <Text style={vs.cardLabel}>Objective Analysis</Text>
-      </View>
-      <View style={vs.headCenter}>
-        <WireframeHead size={200} scanLine animated />
-      </View>
-      <View style={vs.scanOverlays}>
-        <View style={vs.scanPill}>
-          <Text style={vs.scanPillLabel}>%</Text>
-          <Text style={vs.scanPillValue}>72%</Text>
-          <Text style={vs.scanPillSub}>Density</Text>
-        </View>
-        <View style={[vs.scanPill, { right: 12, top: 80 }]}>
-          <Ionicons name="trending-up" size={12} color={colors.primary} />
-          <Text style={vs.scanPillValue}>Stage III</Text>
-        </View>
-        <View style={[vs.scanPill, { left: 12, bottom: 40 }]}>
-          <Text style={vs.scanPillSub}>Stage</Text>
-          <Text style={vs.scanPillSub}>density</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
+/* Scan visual removed */
 
 /* ─── Visual 2: Current vs Projected Grid ─── */
 function JourneyVisual() {
